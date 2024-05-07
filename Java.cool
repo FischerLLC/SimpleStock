@@ -1,0 +1,41 @@
+function fetchStockData() {
+    const stockName = document.getElementById('stockName').value;
+
+    // Fetch stock data from an API
+    fetch(`https://finance.yahoo.com/?symbol=${stockName}`)
+        .then(response => response.json())
+        .then(data => {
+            // Display analysis results
+            displayAnalysisResults(data);
+        })
+        .catch(error => console.error('Error fetching stock data:', error));
+
+    // Fetch recent news affecting the stock
+    fetch(`https://finance.yahoo.com/news/?symbol=${stockName}`)
+        .then(response => response.json())
+        .then(news => {
+            // Display recent news
+            displayNews(news);
+        })
+        .catch(error => console.error('Error fetching news:', error));
+}
+
+function displayAnalysisResults(data) {
+    const analysisResultsDiv = document.getElementById('analysisResults');
+    analysisResultsDiv.innerHTML = `
+        <h2>${data.symbol} Analysis</h2>
+        <p>Positives: ${data.positives}</p>
+        <p>Negatives: ${data.negatives}</p>
+        <p>Recommendation: ${data.recommendation}</p>
+    `;
+}
+
+function displayNews(news) {
+    const newsFeedDiv = document.getElementById('newsFeed');
+    newsFeedDiv.innerHTML = `
+        <h2>Recent News</h2>
+        <ul>
+            ${news.map(item => `<li>${item.title} - ${item.publishedAt}</li>`).join('')}
+        </ul>
+    `;
+}
