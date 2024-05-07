@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Stock Analysis</h1>
+    </header>
+    <main>
+        <div id="stockInput">
+            <label for="stockName">Enter Stock Name:</label>
+            <input type="text" id="stockName">
+            <button onclick="fetchStockData()">Analyze</button>
+        </div>
+        <div id="analysisResults">
+            <!-- Analysis results will be displayed here -->
+        </div>
+        <div id="newsFeed">
+            <!-- Recent news affecting the stock will be displayed here -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Stock Analysis. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
